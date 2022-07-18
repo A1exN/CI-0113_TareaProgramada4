@@ -1,5 +1,6 @@
 #include "producto.h"
 #include "excepcionesProducto.h"
+#include <regex>
 
 Producto::Producto(int id, string nombreProducto, int existencias)
 {
@@ -7,11 +8,11 @@ Producto::Producto(int id, string nombreProducto, int existencias)
     {
         throw ExcepcionNombreProductoInvalido();
     }
-    if (id <= 0)
+    if (id <= 0 || !regex_match(to_string(id), regex("[0-9]*")))
     {
         throw ExcepcionIdentificadorProductoNoPositivo();
     }
-    if (existencias < 0)
+    if (existencias < 0 || !regex_match(to_string(existencias), regex("[0-9]*")))
     {
         throw ExcepcionExistenciasDeProductoNegativas();
     }
@@ -33,6 +34,11 @@ Producto::~Producto()
 
 }
 
+int Producto::ObtenerID()
+{
+    return this->id;
+}
+
 void Producto::ModificarNombre(string nuevoNombre)
 {
     if (nuevoNombre.length() == 0 or nuevoNombre.length() > 20)
@@ -45,7 +51,7 @@ void Producto::ModificarNombre(string nuevoNombre)
 
 void Producto::ModificarExistencias(int nuevaCantidadEnExistencia)
 {
-    if (nuevaCantidadEnExistencia < 0)
+    if (nuevaCantidadEnExistencia < 0 || !regex_match(to_string(nuevaCantidadEnExistencia), regex("[0-9]*")))
     {
         throw ExcepcionExistenciasDeProductoNegativas();
     }

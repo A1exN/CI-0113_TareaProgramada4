@@ -45,6 +45,31 @@ Tienda::~Tienda()
     }
 }
 
+void Tienda::AgregarInformacionGeneralDeTienda(string nombreTienda, string direccionInternet, string direccionFisica, string telefono)
+{
+    if (nombreTienda.length() == 0 || nombreTienda.length() > 15)
+    {
+        throw ExcepcionNombreTiendaInvalido();
+    }
+    if (direccionInternet.length() == 0 || direccionInternet.length() > 24)
+    {
+        throw ExcepcionDireccionInternetInvalida();
+    }
+    if (direccionFisica.length() == 0 || direccionFisica.length() > 24)
+    {
+        throw ExcepcionDireccionFisicaInvalida();
+    }
+    if (telefono.length() != 8 || !regex_match(telefono, regex("[0-9]*")))
+    {
+        throw ExcepcionTelefonoTiendaInvalido();
+    }
+
+    strcpy(this->nombreTienda, nombreTienda.c_str());
+    strcpy(this->direccionInternet, direccionInternet.c_str());
+    strcpy(this->direccionFisica, direccionFisica.c_str());
+    strcpy(this->telefono, telefono.c_str());
+}
+
 void Tienda::AgregarProducto(Producto *producto)
 {
     this->productos.push_back(producto);
@@ -133,7 +158,10 @@ void Tienda::GuardarEnStreamBinario(ostream *streamSalida)
 
 ostream& operator << (ostream &o, const Tienda *tienda)
 {
-    o << "Productos:" << std::endl;
+    o << tienda->nombreTienda << std::endl
+      << tienda->direccionInternet << std::endl
+      << tienda->direccionFisica << std::endl
+      << tienda->telefono << std::endl;
 
     for (Producto *producto : tienda->productos)
     {

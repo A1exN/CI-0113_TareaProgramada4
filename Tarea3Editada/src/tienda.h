@@ -22,6 +22,8 @@ public:
     Tienda();
     ~Tienda();
 
+    void AgregarInformacionGeneralDeTienda(string nombreTienda, string direccionInternet, string direccionFisica, string telefono);
+
     void AgregarProducto(Producto *producto);
 
     Producto *ObtenerProducto(int idProducto);
