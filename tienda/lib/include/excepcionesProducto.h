@@ -21,7 +21,7 @@ class ExcepcionIdentificadorProductoNoPositivo : public std::exception
     ~ExcepcionIdentificadorProductoNoPositivo() = default;
 
     virtual const char* what() const noexcept {
-        return "El identificador del producto no puede ser negativo.";
+        return "El identificador del producto debe ser un número entero positivo.";
     }
 };
 
@@ -32,7 +32,7 @@ class ExcepcionExistenciasDeProductoNegativas : public std::exception
     ~ExcepcionExistenciasDeProductoNegativas() = default;
 
     virtual const char* what() const noexcept {
-        return "Las existencias del producto no pueden ser negativas.";
+        return "Las existencias del producto deben ser un número entero positivo.";
     }
 };
 

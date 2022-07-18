@@ -20,6 +20,8 @@ public:
     Producto();
     ~Producto();
 
+    int ObtenerID();
+
     void ModificarNombre(string nuevoNombre);
 
     void ModificarExistencias(int nuevaCantidadEnExistencia);

@@ -17,9 +17,9 @@
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>20</y>
-      <width>411</width>
+      <width>401</width>
       <height>141</height>
      </rect>
     </property>
@@ -32,7 +32,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="txtNombre"/>
+      <widget class="QLineEdit" name="txtNombreTienda"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -80,7 +80,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>210</y>
+      <y>220</y>
       <width>181</width>
       <height>30</height>
      </rect>
@@ -93,7 +93,7 @@
     <property name="geometry">
      <rect>
       <x>250</x>
-      <y>210</y>
+      <y>220</y>
       <width>181</width>
       <height>30</height>
      </rect>
@@ -126,6 +126,45 @@
     </property>
     <property name="text">
      <string>Guardar Tienda</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnEliminarProducto">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>270</y>
+      <width>181</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Eliminar Producto</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnBorrarLista">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>270</y>
+      <width>181</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Borrar Lista</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLimpiarInformacionTienda">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>160</y>
+      <width>341</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Limpiar Informacion General de la Tienda</string>
     </property>
    </widget>
   </widget>

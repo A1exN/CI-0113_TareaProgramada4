@@ -23,6 +23,14 @@ private slots:
 
     void on_btnGuardarTienda_clicked();
 
+    void on_btnCargarTienda_clicked();
+
+    void on_btnLimpiarInformacionTienda_clicked();
+
+    void on_btnBorrarLista_clicked();
+
+    void on_btnEliminarProducto_clicked();
+
 private:
     Ui::MainWindow *ui;
     Tienda *tienda;

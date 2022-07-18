@@ -22,7 +22,7 @@ class ExcepcionDireccionInternetInvalida : public std::exception
     ~ExcepcionDireccionInternetInvalida() = default;
 
     virtual const char* what() const noexcept {
-        return "La direccion de internet no puede superar los 24 caracteres.";
+        return "La direccion de internet no puede ser nula o superar los 24 caracteres.";
     }
 };
 
@@ -33,7 +33,7 @@ class ExcepcionDireccionFisicaInvalida : public std::exception
     ~ExcepcionDireccionFisicaInvalida() = default;
 
     virtual const char* what() const noexcept {
-        return "La direccion física no puede superar los 24 caracteres.";
+        return "La direccion física no puede ser nula o superar los 24 caracteres.";
     }
 };
 

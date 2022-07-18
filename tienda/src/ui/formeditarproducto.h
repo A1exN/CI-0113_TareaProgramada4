@@ -15,6 +15,10 @@ public:
     explicit formEditarProducto(QWidget *parent = nullptr);
     ~formEditarProducto();
 
+    //void cargarInformacion(int id, std::string nombreProducto, int existenciasProducto);
+    std::string obtenerNombreProducto();
+    int obtenerExistenciasProducto();
+
 private:
     Ui::formEditarProducto *ui;
 };
