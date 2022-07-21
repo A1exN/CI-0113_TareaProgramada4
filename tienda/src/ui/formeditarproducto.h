@@ -1,6 +1,7 @@
 #ifndef FORMEDITARPRODUCTO_H
 #define FORMEDITARPRODUCTO_H
 
+#include "qlistwidget.h"
 #include <QDialog>
 
 namespace Ui {
@@ -15,7 +16,7 @@ public:
     explicit formEditarProducto(QWidget *parent = nullptr);
     ~formEditarProducto();
 
-    //void cargarInformacion(int id, std::string nombreProducto, int existenciasProducto);
+    void cargarInformacion(QListWidgetItem currentItem);
     std::string obtenerNombreProducto();
     int obtenerExistenciasProducto();
 

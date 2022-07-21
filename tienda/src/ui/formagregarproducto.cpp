@@ -25,5 +25,11 @@ std::string formAgregarProducto::obtenerNombreProducto()
 
 int formAgregarProducto::obtenerExistenciasProducto()
 {
-    return this->ui->txtExistencias->text().toInt();
+    // Si es una letra retorna 0, por lo que no saltaría la excepcion, por eso se retorna -1
+    bool ok;
+    int existencias = this->ui->txtExistencias->text().toInt(&ok);
+    if (ok) {
+        return existencias;
+    }
+    return -1;
 }

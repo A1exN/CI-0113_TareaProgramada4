@@ -36,6 +36,9 @@ void MainWindow::on_btnEditarProducto_clicked()
     else
     {
         formEditarProducto formEditarProducto{this};
+
+        formEditarProducto.cargarInformacion(*(this->ui->listaEditable->currentItem()));
+
         int resultado = formEditarProducto.exec();
 
         if (resultado == QDialog::Accepted)
@@ -91,35 +94,36 @@ void MainWindow::on_btnAgregarProducto_clicked()
         QString qNombre = QString::fromStdString(nombreProducto);
         QString qExistencias = QString::number(existencias);
         this->ui->listaEditable->addItem(qID + ". " + qNombre + ". En existencia: " + qExistencias);
+        this->ui->listaEditable->sortItems();
     }
 }
 
 
 void MainWindow::on_btnGuardarTienda_clicked()
 {
+    string nombreTienda = this->ui->txtNombreTienda->text().toStdString();
+    string direccionInternet = this->ui->txtDireccionInternet->text().toStdString();
+    string direccionFisica = this->ui->txtDireccionFisica->text().toStdString();
+    string telefono = this->ui->txtTelefono->text().toStdString();
+
+    try {
+
+        this->tienda->AgregarInformacionGeneralDeTienda(nombreTienda, direccionInternet, direccionFisica, telefono);
+
+    } catch (const std::exception& e) {
+        QMessageBox* msgBox = new QMessageBox(this);
+        msgBox->setWindowTitle("Error al guardar");
+        msgBox->setText(e.what());
+        msgBox->open();
+        return;
+    }
+
     QString nombreArchivo = QFileDialog::getSaveFileName(this,
             "Guardar Archivo de Datos", "",
             tr("Archivo de datos (*.dat);;All Files (*)"));
 
     if (nombreArchivo != "")
     {
-        string nombreTienda = this->ui->txtNombreTienda->text().toStdString();
-        string direccionInternet = this->ui->txtDireccionInternet->text().toStdString();
-        string direccionFisica = this->ui->txtDireccionFisica->text().toStdString();
-        string telefono = this->ui->txtTelefono->text().toStdString();
-
-        try {
-
-            this->tienda->AgregarInformacionGeneralDeTienda(nombreTienda, direccionInternet, direccionFisica, telefono);
-
-        } catch (const std::exception& e) {
-            QMessageBox* msgBox = new QMessageBox(this);
-            msgBox->setWindowTitle("Error al guardar");
-            msgBox->setText(e.what());
-            msgBox->open();
-            return;
-        }
-
         std::string strNombreArchivo = nombreArchivo.toStdString();
 
         ofstream archivoSalida(strNombreArchivo, ios::out|ios::binary);
@@ -174,11 +178,11 @@ void MainWindow::on_btnCargarTienda_clicked()
 
         //Cargar informacion general de la tienda en los campos editables
         std::getline(streamInformacionTienda, linea);
-        this->ui->txtNombreTienda->setText(QString::fromStdString(linea));
+        this->ui->txtNombreTienda->setText(QString::fromStdString(linea).mid(0,15));
         std::getline(streamInformacionTienda, linea);
-        this->ui->txtDireccionInternet->setText(QString::fromStdString(linea));
+        this->ui->txtDireccionInternet->setText(QString::fromStdString(linea).mid(0,24));
         std::getline(streamInformacionTienda, linea);
-        this->ui->txtDireccionFisica->setText(QString::fromStdString(linea));
+        this->ui->txtDireccionFisica->setText(QString::fromStdString(linea).mid(0,24));
         std::getline(streamInformacionTienda, linea);
         this->ui->txtTelefono->setText(QString::fromStdString(linea).mid(0,8));
 
@@ -201,14 +205,37 @@ void MainWindow::on_btnLimpiarInformacionTienda_clicked()
     this->ui->txtDireccionInternet->setText("");
     this->ui->txtDireccionFisica->setText("");
     this->ui->txtTelefono->setText("");
+
+    this->ui->txtNombreTienda->setFocus();
 }
 
 
 void MainWindow::on_btnBorrarLista_clicked()
 {
-    this->ui->listaEditable->clear();
-    //Reinicia tienda
-    this->tienda = new Tienda();
+    if (this->ui->listaEditable->count() == 0)
+    {
+        QMessageBox* msgBox = new QMessageBox(this);
+        msgBox->setWindowTitle("Message Box");
+        msgBox->setText("La lista ya se encuentra vacía");
+        msgBox->open();
+    }
+    else
+    {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Borrar Lista", "¿Realmente desea borrar la lista de productos?",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+
+            this->ui->listaEditable->clear();
+            //Reinicia tienda
+            this->tienda = new Tienda();
+            qDebug() << "Yes was clicked";
+            //QApplication::quit();
+
+        }else {
+            qDebug() << "Yes was *not* clicked";
+        }
+    }
 }
 
 
@@ -225,9 +252,9 @@ void MainWindow::on_btnEliminarProducto_clicked()
     }
     else
     {
+        this->tienda->EliminarProducto(this->ui->listaEditable->currentRow() + 1);
         QListWidgetItem *linea = this->ui->listaEditable->takeItem(this->ui->listaEditable->currentRow());
         delete linea;
-        this->tienda->EliminarProducto(this->ui->listaEditable->currentRow() + 1);
     }
 }
 
