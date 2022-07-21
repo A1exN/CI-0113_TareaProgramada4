@@ -14,3 +14,7 @@ estaba cargado en memoria y lo que se muestra en la aplicación.
 Cuando el programa arranca, la interfaz se muestra vacía, por lo que el usuario podrá cargar
 un archivo binario (.dat) existente o crear una tienda desde cero. Si el usuario carga un archivo
 puede empezar a editar la información para luego guardar un archivo binario nuevo.
+
+## Compilación
+
+Una vez descargado el proyecto, en *Qt Creator* dé clic en *Abrir Proyecto*, diríjase a la carpeta del proyecto llamada *tienda* y seleccione el archivo *tienda.pro*, una vez cargado el código, ejecute la combinación de teclas *Ctrl+r* para compilar.
