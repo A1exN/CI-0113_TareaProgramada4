@@ -4,13 +4,13 @@
 
 Producto::Producto(int id, string nombreProducto, int existencias)
 {
-    if (nombreProducto.length() == 0 || nombreProducto.length() > 20)
-    {
-        throw ExcepcionNombreProductoInvalido();
-    }
     if (id <= 0 || !regex_match(to_string(id), regex("[0-9]*")))
     {
         throw ExcepcionIdentificadorProductoNoPositivo();
+    }
+    if (nombreProducto.length() == 0 || nombreProducto.length() > 20)
+    {
+        throw ExcepcionNombreProductoInvalido();
     }
     if (existencias < 0 || !regex_match(to_string(existencias), regex("[0-9]*")))
     {
