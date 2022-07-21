@@ -6,6 +6,7 @@ formAgregarProducto::formAgregarProducto(QWidget *parent) :
     ui(new Ui::formAgregarProducto)
 {
     ui->setupUi(this);
+    ui->txtID->setFocus();
 }
 
 formAgregarProducto::~formAgregarProducto()

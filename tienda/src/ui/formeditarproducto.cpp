@@ -6,6 +6,7 @@ formEditarProducto::formEditarProducto(QWidget *parent) :
     ui(new Ui::formEditarProducto)
 {
     ui->setupUi(this);
+    ui->txtExistencias->setFocus();
 }
 
 formEditarProducto::~formEditarProducto()
