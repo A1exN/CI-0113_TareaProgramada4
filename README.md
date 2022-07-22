@@ -17,4 +17,4 @@ puede empezar a editar la información para luego guardar un archivo binario nue
 
 ## Compilación
 
-Una vez descargado el proyecto, en *Qt Creator* dé clic en *Abrir Proyecto*, diríjase a la carpeta del proyecto llamada *tienda* y seleccione el archivo *tienda.pro*, una vez cargado el código, ejecute la combinación de teclas *Ctrl+r* para compilar.
+Este programa fue creado en *Qt Creator* versión 6.2.4. Una vez descargado el proyecto, en *Qt Creator* dé clic en *Abrir Proyecto*, diríjase a la carpeta del proyecto llamada *tienda* y seleccione el archivo *tienda.pro*, una vez cargado el código, ejecute la combinación de teclas *Ctrl+r* para compilar.
